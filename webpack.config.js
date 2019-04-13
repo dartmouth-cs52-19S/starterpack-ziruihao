@@ -51,13 +51,13 @@ module.exports = {
         ],
       },
       {
-        test: /\.(jpe?g|png|gif|svg|json)$/,
+        test: /\.(png|jpg|gif)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
-              useReltativePath: true,
-              name: '[name].[ext]',
+              limit: 10240, // this is the file limit size, under which url-loader will handle, over which it will be passed to fallback
+              fallback: 'file-loader',
             },
           },
         ],
